@@ -7,6 +7,11 @@ schedule_url = 'https://student.guc.edu.eg/Web/Student/Schedule/GroupSchedule.as
 username = str(input("Enter your username: "))
 password = str(input("Enter your password: "))
 
+while (username.strip() == "" or password.strip() == ""):
+    print("Username/Password Cannot Be Empty")
+    username = str(input("Enter your username: "))
+    password = str(input("Enter your password: "))
+
 def get_day_index(day_name: str):
     day_name = day_name.lower()
     index = -1
@@ -27,6 +32,8 @@ def get_day_index(day_name: str):
 def get_day_schedule(day_index: int):
     day_schedule = []
     r = requests.get(schedule_url, auth=HttpNtlmAuth(username, password))
+    if r.status_code != 200:
+        print("An Error Occurred. Check Credentials And Try Again.")
     soup = BeautifulSoup(r.content, 'html.parser')
     table: NavigableString = soup.find("table", id="scdTbl")
     children = table.findChildren("tr", recursive=False)
