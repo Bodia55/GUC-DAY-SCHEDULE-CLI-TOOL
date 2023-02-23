@@ -14,7 +14,7 @@ schedule_url = 'https://student.guc.edu.eg/Web/Student/Schedule/GroupSchedule.as
 root = tk.Tk()
 root.title("GUC Schedule")
 root.configure(bg="#eeeeee")
-root.geometry("3000x500")
+root.geometry("3000x600")
 
 username_label = tk.Label(root, text="username:", fg="black", bg="#eeeeee")
 username_label.grid(row=0, column=0)
@@ -41,15 +41,15 @@ for i in range(1, 8):
         # Create the column headers in the first row
         elif i == 1:
             label = tk.Label(root, text=column_headers[j-2], padx=10, pady=10, relief=tk.RIDGE)
-            label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+            label.grid(row=i+5, column=j, sticky=tk.NSEW)
         # Create the row headers in the first column
         elif j == 1:
             label = tk.Label(root, text=row_headers[i-2], padx=10, pady=10, relief=tk.RIDGE)
-            label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+            label.grid(row=i+5, column=j, sticky=tk.NSEW)
         # Create the empty cells
         else:
             label = tk.Label(root, text="", padx=10, pady=10, relief=tk.RIDGE)
-            label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+            label.grid(row=i+5, column=j, sticky=tk.NSEW)
 
 def get_day_index(day_name: str):
     day_name = day_name.lower()
@@ -117,15 +117,15 @@ def get_schedule():
                 # Create the column headers in the first row
                 elif i == 1:
                     label = tk.Label(root, text=column_headers[j-2], padx=10, pady=10, relief=tk.RIDGE)
-                    label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+                    label.grid(row=i+5, column=j+1, sticky=tk.NSEW)
                 # Create the row headers in the first column
                 elif j == 1:
                     label = tk.Label(root, text=row_headers[i-2], padx=10, pady=10, relief=tk.RIDGE)
-                    label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+                    label.grid(row=i+5, column=j+1, sticky=tk.NSEW)
                 # Create the empty cells
                 else:
                     label = tk.Label(root, text=new_schedule[i-2][j-2], padx=10, pady=10, relief=tk.RIDGE)
-                    label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+                    label.grid(row=i+5, column=j+1, sticky=tk.NSEW)
                     
     except:
         
