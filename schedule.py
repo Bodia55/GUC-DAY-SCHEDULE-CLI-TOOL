@@ -1,3 +1,4 @@
+from tkinter import messagebox
 import requests
 from requests_ntlm import HttpNtlmAuth
 from bs4 import BeautifulSoup, NavigableString, Tag
@@ -90,38 +91,45 @@ def get_day_schedule(day_index: int):
     return day_schedule
 
 def get_schedule():
-    new_schedule = [[],[],[],[],[],[]]
-    days = ["saturday", "sunday", "monday", "tuesday", "wednesday", "thursday"]
-    for day in days:
-        index = get_day_index(day)
-        schedule = get_day_schedule(index)
-        formatted_schedule = []
-        for item in schedule:
-            formatted_schedule.append(item.replace("\r\n\t\t\t\t\t\t\t\t\t\t\t\tTut\r\n\t\t\t\t\t\t\t\t\t\t\t\n", " Tut").replace("\r\n\t\t\t\t\t\t\t\t\t\t\t\tLab\r\n\t\t\t\t\t\t\t\t\t\t\t\n", " Lab"))
-        new_schedule[index] = formatted_schedule
-        if formatted_schedule == []:
-            new_schedule[index] = ['Free', 'Free', 'Free', 'Free', 'Free']
-        
-    for i in range(len(days)):
-        print(str(days[i]) + str(new_schedule[i]))
+    
+    try:
+    
+        new_schedule = [[],[],[],[],[],[]]
+        days = ["saturday", "sunday", "monday", "tuesday", "wednesday", "thursday"]
+        for day in days:
+            index = get_day_index(day)
+            schedule = get_day_schedule(index)
+            formatted_schedule = []
+            for item in schedule:
+                formatted_schedule.append(item.replace("\r\n\t\t\t\t\t\t\t\t\t\t\t\tTut\r\n\t\t\t\t\t\t\t\t\t\t\t\n", " Tut").replace("\r\n\t\t\t\t\t\t\t\t\t\t\t\tLab\r\n\t\t\t\t\t\t\t\t\t\t\t\n", " Lab"))
+            new_schedule[index] = formatted_schedule
+            if formatted_schedule == []:
+                new_schedule[index] = ['Free', 'Free', 'Free', 'Free', 'Free']
+            
+        for i in range(len(days)):
+            print(str(days[i]) + str(new_schedule[i]))
 
-    for i in range(1, 8):
-        for j in range(1, 7):
-            # Skip the first cell
-            if i == 1 and j == 1:
-                continue
-            # Create the column headers in the first row
-            elif i == 1:
-                label = tk.Label(root, text=column_headers[j-2], padx=10, pady=10, relief=tk.RIDGE)
-                label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
-            # Create the row headers in the first column
-            elif j == 1:
-                label = tk.Label(root, text=row_headers[i-2], padx=10, pady=10, relief=tk.RIDGE)
-                label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
-            # Create the empty cells
-            else:
-                label = tk.Label(root, text=new_schedule[i-2][j-2], padx=10, pady=10, relief=tk.RIDGE)
-                label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+        for i in range(1, 8):
+            for j in range(1, 7):
+                # Skip the first cell
+                if i == 1 and j == 1:
+                    continue
+                # Create the column headers in the first row
+                elif i == 1:
+                    label = tk.Label(root, text=column_headers[j-2], padx=10, pady=10, relief=tk.RIDGE)
+                    label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+                # Create the row headers in the first column
+                elif j == 1:
+                    label = tk.Label(root, text=row_headers[i-2], padx=10, pady=10, relief=tk.RIDGE)
+                    label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+                # Create the empty cells
+                else:
+                    label = tk.Label(root, text=new_schedule[i-2][j-2], padx=10, pady=10, relief=tk.RIDGE)
+                    label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+                    
+    except:
+        
+        messagebox.showerror("Error", "Something went wrong. Please check your credentials and try again.")
     
 submit = tk.Button(root, text="Get schedule", command=get_schedule)
 submit.grid(row=3, column=1)
