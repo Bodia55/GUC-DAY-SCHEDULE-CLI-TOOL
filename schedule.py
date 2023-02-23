@@ -117,15 +117,15 @@ def get_schedule():
                 # Create the column headers in the first row
                 elif i == 1:
                     label = tk.Label(root, text=column_headers[j-2], padx=10, pady=10, relief=tk.RIDGE)
-                    label.grid(row=i+5, column=j+1, sticky=tk.NSEW)
+                    label.grid(row=i+5, column=j, sticky=tk.NSEW)
                 # Create the row headers in the first column
                 elif j == 1:
                     label = tk.Label(root, text=row_headers[i-2], padx=10, pady=10, relief=tk.RIDGE)
-                    label.grid(row=i+5, column=j+1, sticky=tk.NSEW)
+                    label.grid(row=i+5, column=j, sticky=tk.NSEW)
                 # Create the empty cells
                 else:
                     label = tk.Label(root, text=new_schedule[i-2][j-2], padx=10, pady=10, relief=tk.RIDGE)
-                    label.grid(row=i+5, column=j+1, sticky=tk.NSEW)
+                    label.grid(row=i+5, column=j, sticky=tk.NSEW)
                     
     except:
         
