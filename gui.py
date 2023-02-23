@@ -26,89 +26,30 @@ password_label.grid(row=1, column=0)
 password = tk.Entry(root, show="*")
 password.grid(row=1, column=1)
 
-#create a label for each day and each slot per day
-saturday = tk.Label(root, text="Saturday", fg="black", bg="#aaaaaa")
-saturday.grid(row=5, column=1)
-sunday = tk.Label(root, text="Sunday", fg="black", bg="#aaaaaa")
-sunday.grid(row=6, column=1)
-monday = tk.Label(root, text="Monday", fg="black", bg="#aaaaaa")
-monday.grid(row=7, column=1)
-tuesday = tk.Label(root, text="Tuesday", fg="black", bg="#aaaaaa")
-tuesday.grid(row=8, column=1)
-wednesday = tk.Label(root, text="Wednesday", fg="black", bg="#aaaaaa")
-wednesday.grid(row=9, column=1)
-thursday = tk.Label(root, text="Thursday", fg="black", bg="#aaaaaa")
-thursday.grid(row=10, column=1)
-first = tk.Label(root, text="First Slot", fg="black", bg="#aaaaaa")
-first.grid(row=4, column=2)
-second = tk.Label(root, text="Second Slot", fg="black", bg="#aaaaaa")
-second.grid(row=4, column=3)
-third = tk.Label(root, text="Third Slot", fg="black", bg="#aaaaaa")
-third.grid(row=4, column=4)
-fourth = tk.Label(root, text="Fourth Slot", fg="black", bg="#aaaaaa")
-fourth.grid(row=4, column=5)
-fifth = tk.Label(root, text="Fifth Slot", fg="black", bg="#aaaaaa")
-fifth.grid(row=4, column=6)
-sat_1 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-sat_1.grid(row=5, column=2)
-sat_2 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-sat_2.grid(row=5, column=3)
-sat_3 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-sat_3.grid(row=5, column=4)
-sat_4 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-sat_4.grid(row=5, column=5)
-sat_5 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-sat_5.grid(row=5, column=6)
-sun_1 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-sun_1.grid(row=6, column=2)
-sun_2 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-sun_2.grid(row=6, column=3)
-sun_3 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-sun_3.grid(row=6, column=4)
-sun_4 = tk.Label(root, text="", fg="black", bg="#aaaaaa")   
-sun_4.grid(row=6, column=5)
-sun_5 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-sun_5.grid(row=6, column=6)
-mon_1 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-mon_1.grid(row=7, column=2)
-mon_2 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-mon_2.grid(row=7, column=3)
-mon_3 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-mon_3.grid(row=7, column=4)
-mon_4 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-mon_4.grid(row=7, column=5)
-mon_5 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-mon_5.grid(row=7, column=6)
-tue_1 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-tue_1.grid(row=8, column=2)
-tue_2 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-tue_2.grid(row=8, column=3)
-tue_3 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-tue_3.grid(row=8, column=4)
-tue_4 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-tue_4.grid(row=8, column=5)
-tue_5 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-tue_5.grid(row=8, column=6)
-wed_1 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-wed_1.grid(row=9, column=2)
-wed_2 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-wed_2.grid(row=9, column=3)
-wed_3 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-wed_3.grid(row=9, column=4)
-wed_4 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-wed_4.grid(row=9, column=5)
-wed_5 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-wed_5.grid(row=9, column=6)
-thu_1 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-thu_1.grid(row=10, column=2)
-thu_2 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-thu_2.grid(row=10, column=3)
-thu_3 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-thu_3.grid(row=10, column=4)
-thu_4 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-thu_4.grid(row=10, column=5)
-thu_5 = tk.Label(root, text="", fg="black", bg="#aaaaaa")
-thu_5.grid(row=10, column=6)
+# Create a list of column headers
+column_headers = ["First Slot", "Second Slot", "Third Slot", "Fourth Slot", "Fifth Slot"]
+
+# Create a list of row headers
+row_headers = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"]
+
+# Create a table using a nested for loop
+for i in range(1, 8):
+    for j in range(1, 7):
+        # Skip the first cell
+        if i == 1 and j == 1:
+            continue
+        # Create the column headers in the first row
+        elif i == 1:
+            label = tk.Label(root, text=column_headers[j-2], padx=10, pady=10, relief=tk.RIDGE)
+            label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+        # Create the row headers in the first column
+        elif j == 1:
+            label = tk.Label(root, text=row_headers[i-2], padx=10, pady=10, relief=tk.RIDGE)
+            label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+        # Create the empty cells
+        else:
+            label = tk.Label(root, text="", padx=10, pady=10, relief=tk.RIDGE)
+            label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
 
 def get_day_index(day_name: str):
     day_name = day_name.lower()
@@ -165,36 +106,23 @@ def get_schedule():
     for i in range(len(days)):
         print(str(days[i]) + str(new_schedule[i]))
 
-    sat_1.configure(text=new_schedule[0][0])
-    sat_2.configure(text=new_schedule[0][1])
-    sat_3.configure(text=new_schedule[0][2])
-    sat_4.configure(text=new_schedule[0][3])
-    sat_5.configure(text=new_schedule[0][4])
-    sun_1.configure(text=new_schedule[1][0])
-    sun_2.configure(text=new_schedule[1][1])
-    sun_3.configure(text=new_schedule[1][2])
-    sun_4.configure(text=new_schedule[1][3])
-    sun_5.configure(text=new_schedule[1][4])
-    mon_1.configure(text=new_schedule[2][0])
-    mon_2.configure(text=new_schedule[2][1])
-    mon_3.configure(text=new_schedule[2][2])
-    mon_4.configure(text=new_schedule[2][3])
-    mon_5.configure(text=new_schedule[2][4])
-    tue_1.configure(text=new_schedule[3][0])
-    tue_2.configure(text=new_schedule[3][1])
-    tue_3.configure(text=new_schedule[3][2])
-    tue_4.configure(text=new_schedule[3][3])
-    tue_5.configure(text=new_schedule[3][4])
-    wed_1.configure(text=new_schedule[4][0])
-    wed_2.configure(text=new_schedule[4][1])
-    wed_3.configure(text=new_schedule[4][2])
-    wed_4.configure(text=new_schedule[4][3])
-    wed_5.configure(text=new_schedule[4][4])
-    thu_1.configure(text=new_schedule[5][0])
-    thu_2.configure(text=new_schedule[5][1])
-    thu_3.configure(text=new_schedule[5][2])
-    thu_4.configure(text=new_schedule[5][3])
-    thu_5.configure(text=new_schedule[5][4])
+    for i in range(1, 8):
+        for j in range(1, 7):
+            # Skip the first cell
+            if i == 1 and j == 1:
+                continue
+            # Create the column headers in the first row
+            elif i == 1:
+                label = tk.Label(root, text=column_headers[j-2], padx=10, pady=10, relief=tk.RIDGE)
+                label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+            # Create the row headers in the first column
+            elif j == 1:
+                label = tk.Label(root, text=row_headers[i-2], padx=10, pady=10, relief=tk.RIDGE)
+                label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
+            # Create the empty cells
+            else:
+                label = tk.Label(root, text=new_schedule[i-2][j-2], padx=10, pady=10, relief=tk.RIDGE)
+                label.grid(row=i+1, column=j+1, sticky=tk.NSEW)
     
 submit = tk.Button(root, text="Get schedule", command=get_schedule)
 submit.grid(row=3, column=1)
