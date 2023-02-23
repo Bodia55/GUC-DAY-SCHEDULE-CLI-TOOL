@@ -23,7 +23,7 @@ username.grid(row=0, column=1)
 
 password_label = tk.Label(root, text="password:", fg="black", bg="#eeeeee")
 password_label.grid(row=1, column=0)
-password = tk.Entry(root)
+password = tk.Entry(root, show="*")
 password.grid(row=1, column=1)
 
 #create a label for each day and each slot per day
